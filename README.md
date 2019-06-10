@@ -1,4 +1,4 @@
-﻿# Vue.js ile örnek lead formu
+﻿# Javascript ile örnek lead formu
 
 Projeyi indirin
 index html içerisinde bulunan api tanımlama kod parçacığı üzerinde gerekli tanımlamaları yapın
