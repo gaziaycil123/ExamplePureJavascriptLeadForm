@@ -1,0 +1,350 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/theme/base16-dark.css" />
+    <style>
+
+        .wait-section select {
+            background: url(assets/images/clock.svg) right 15px center no-repeat;
+            background-size: 22px;
+        }
+
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <script src="assets/js/insurando.api.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.0/beautify.js"></script>
+    <script src="https://unpkg.com/vanilla-masker@1.1.1/lib/vanilla-masker.js"></script>
+
+
+    <section class="container" id="app">
+
+        <div class="row">
+            <div class="col-12">
+                <p class="text-success">Was ist Ihnen wichtig?</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="chk1" type="checkbox" name="WhatIsImportantForYou" value="Günstige Prämien">
+                    <label class="form-check-label" for="chk1">Günstige Prämien</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="chk2" type="checkbox" name="WhatIsImportantForYou" value="Spitalzusatzversicherung">
+                    <label class="form-check-label" for="chk2">Spitalzusatzversicherung</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="chk3" type="checkbox" name="WhatIsImportantForYou" value="Rabatte für Familien">
+                    <label class="form-check-label" for="chk3">Rabatte für Familien</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="chk4" type="checkbox" name="WhatIsImportantForYou" value="Halbprivat/Privat">
+                    <label class="form-check-label" for="chk4">Halbprivat/Privat</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="chk5" type="checkbox" name="WhatIsImportantForYou" value="Schwangerschaft/Baby">
+                    <label class="form-check-label" for="chk5">Schwangerschaft/Baby</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="chk6" type="checkbox" name="WhatIsImportantForYou" value="Zahnzusatzversicherung">
+                    <label class="form-check-label" for="chk6">Zahnzusatzversicherung</label>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="M">
+                        <button type="button" data-value="M" class="btn btn-white btn-gender">
+                            Herr
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="F">
+                        <button type="button" data-value="F" class="btn btn-white btn-gender">
+                            Frau
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <input type="text" class="form-control track" id="FirstName" placeholder="Vorname">
+            </div>
+            <div class="col mb-2">
+                <input type="text" class="form-control track" id="LastName" placeholder="Nachname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-12 mb-2">
+                <input type="text" class="form-control track" id="StreetName" placeholder="Strasse">
+            </div>
+            <div class="col mb-2">
+                <input type="text" class="form-control onlynumber" maxlength="4" id="PostCode" placeholder="PLZ">
+            </div>
+            <div class="col mb-2">
+                <select class="form-control" id="Region"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <input type="text" class="form-control track" id="PhoneNo" maxlength="13" placeholder="Telefon">
+            </div>
+            <div class="col mb-2">
+                <input type="text" class="form-control track" id="Email" placeholder="E-Mail">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <input type="text" class="form-control" id="BirthDateFormatted" maxlength="10" placeholder="Geburtsdatum">
+            </div>
+            <div class="col mb-2">
+                <input type="text" class="form-control track onlynumber" maxlength="2" id="PersonInHouseHold" placeholder="Anzahl Personen">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-2">
+                <select class="form-control" id="CurrentHealthInsuranceProviderId">
+                    <option value="null" selected>Aktuelle Krankenkasse</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" onclick="saveLead()">Jetzt anfordern</button>
+        <hr />
+        <div class="row">
+            <div class="col mb-2">
+
+                <textarea id="myTextArea" class="">
+</textarea>
+            </div>
+        </div>
+
+
+    </section>
+    <script type="text/javascript">
+        var api = new InsurandoAPI('https://localhost:44382/api/', 'supervizor', '*supervizor*');
+
+        var leadObject = {
+            FirstName: null,
+            LastName: null,
+            Gender: 'M',
+            Email: null,
+            StreetName: null,
+            BuildingNumber: null,
+            PhoneNo: null,
+            Region: null,
+            CurrentHealthInsuranceProviderId: null,
+            BirthDate: null,
+            Franchise: null,
+            Message: null,
+            WhatIsImportantForYou: [],
+            PersonInHouseHold: 1,
+            Language: 'DE'
+        };
+
+        var helperData = {
+            WhatIsImportantForYouChoices: [
+                [
+                    'Günstige Prämien',
+                    'Spitalzusatzversicherung'
+                ],
+                [
+                    'Rabatte für Familien',
+                    'Halbprivat/Privat'
+                ],
+                [
+                    'Schwangerschaft/Baby',
+                    'Zahnzusatzversicherung'
+                ]
+            ],
+            PostCode: null,
+            Regions: [],
+            Companies: [],
+            BirthDateFormatted: null
+        };
+
+        var editor = null;
+
+        // Company --> START
+        var companyElem = document.getElementById('CurrentHealthInsuranceProviderId');
+        companyElem.addEventListener('change', function () {
+            setLeadObjectData('CurrentHealthInsuranceProviderId', this.value);
+        });
+
+        api.Company.Health(function (response) {
+            if (response.readyState !== 4) return;
+
+            if (response.status === 200) {
+                helperData.Companies = JSON.parse(response.responseText);
+                var html = `<option value="null" disabled selected>Aktuelle Krankenkasse</option>`
+                    + helperData.Companies.map(function (item) {
+                        return `<option value="${item.value}">${item.label}</option>`;
+                    }).join('');
+                companyElem.innerHTML = html;
+            }
+        });
+        // Company --> END
+
+        $(function () {
+            editor = CodeMirror.fromTextArea(document.getElementById('myTextArea'), {
+                matchBrackets: true,
+                autoCloseBrackets: true,
+                mode: "text/javascript",
+                lineWrapping: true,
+                theme: 'base16-dark'
+            });
+
+            CodeMirror.commands["selectAll"](editor);
+            editor.setValue(js_beautify(JSON.stringify(leadObject)));
+
+            VMasker(document.getElementById("BirthDateFormatted")).maskPattern("99.99.9999");
+            VMasker(document.getElementById("PhoneNo")).maskPattern("999 999 99 99");
+        });
+
+        function onlyNumber($event) {
+            let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+            if (keyCode < 48 || keyCode > 57) {
+                $event.preventDefault();
+            }
+        }
+
+        Array.from(document.getElementsByClassName('onlynumber')).forEach(function (input) {
+            input.addEventListener('keypress', onlyNumber);
+        });
+
+        function saveLead() {
+            api.Lead(leadObject, function (response) {
+                if (response.readyState !== 4) return;
+
+                editor.setValue(js_beautify(JSON.stringify({
+                    status: response.status,
+                    statusText: response.statusText,
+                    responseText: JSON.parse(response.responseText)
+                })));
+            });
+        }
+
+
+        function setLeadObjectData(propname, value) {
+            leadObject[propname] = value;
+            editor.setValue(js_beautify(JSON.stringify(leadObject)));
+        }
+
+        // PostCode --> START
+        var regionElem = document.getElementById('Region');
+
+        regionElem.addEventListener('change', function () {
+            setLeadObjectData('Region', this.value);
+        });
+
+        document.getElementById('PostCode').addEventListener('input', function () {
+            setLeadObjectData('Regions', []);
+            setLeadObjectData('Region', null);
+            var html = '';
+            regionElem.innerHTML = html;
+            if (this.value.length === 4) {
+                api.Region(parseInt(this.value), function (response) {
+                    if (response.readyState !== 4) return;
+
+                    if (response.status === 200) {
+                        var regions = JSON.parse(response.responseText);
+                        setLeadObjectData('Regions', regions);
+
+                        if (regions.length === 1) {
+                            setLeadObjectData('Region', regions[0].regionId);
+                        } else {
+                            html += `<option value="">Wählen</option>`;
+                        }
+
+                        html += regions.map(function (item) {
+                            return `<option value="${item.regionId}">${item.label}</option>`;
+                        }).join('');
+
+                        regionElem.innerHTML = html;
+                    }
+                });
+            }
+        });
+        // PostCode --> START
+
+        // BirthDate --> START
+        document.getElementById('BirthDateFormatted').addEventListener('input', function () {
+            setLeadObjectData('BirthDate', this.value.split('.').reverse().join('-'));
+        });
+        // BirthDate --> END
+
+        // Gender --> START
+        var genderButtons = document.getElementsByClassName('btn-gender');
+        for (var i = 0; i < genderButtons.length; i++) {
+            genderButtons[i].addEventListener('click', function () {
+
+                for (var j = 0; j < genderButtons.length; j++) {
+                    genderButtons[j].className = 'btn btn-white btn-gender';
+                }
+
+                var gender = this.getAttribute('data-value');
+                setLeadObjectData('Gender', gender);
+                this.className = 'btn btn-success btn-gender';
+            }, false);
+        }
+        // Gender --> END
+
+        // What is important for you --> START
+        var whatIsImportantForYouCheckBoxes = document.getElementsByName('WhatIsImportantForYou');
+
+        for (var z = 0; z < whatIsImportantForYouCheckBoxes.length; z++) {
+            whatIsImportantForYouCheckBoxes[z].addEventListener('click', function () {
+                var value = leadObject.WhatIsImportantForYou;
+
+                if (value.indexOf(this.value) > -1) {
+                    value.splice(value.indexOf(this.value), 1);
+                } else {
+                    value.push(this.value);
+                }
+
+                setLeadObjectData('WhatIsImportantForYou', value);
+            }, false);
+        }
+        // What is important for you --> END
+
+
+        var inputs = document.getElementsByClassName('track');
+
+        Array.from(inputs).forEach(function (input) {
+            input.addEventListener('input', function () {
+                setLeadObjectData(this.id, this.value);
+            });
+        });
+    </script>
+</body>
+</html>
